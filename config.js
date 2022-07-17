@@ -1,6 +1,6 @@
 export const Config = {
   name: 'Elzodxon Sharofaddinov',
-  description: 'Frontend developer, learner, sleeper',
+  description: ' Software developer, author, and host of Davra. ',
   menus: [
     {
       id: 1,
@@ -31,4 +31,5 @@ export const Config = {
   avatar:
     'https://yt3.ggpht.com/ytc/AKedOLRGy9HVGqFAugZOmHCOiXta4FBgKfGGWbRvvV0pow=s88-c-k-c0x00ffffff-no-rj',
   youtube_channel: 'https://youtube.com/elzodxon',
+  telegram_channel: 'https://t.me/elzodxon',
 }
