@@ -4,7 +4,7 @@ export default {
     port: 3000, // default: 3005
     host: '0.0.0.0', // default: localhost
   },
-  ssr: true,
+  ssr: false,
   loading: true,
   head: {
     title: 'Elzodxon Sharofaddinov ',
