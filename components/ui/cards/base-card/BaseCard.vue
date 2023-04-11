@@ -1,27 +1,30 @@
 <template>
-  <article>
-    <nuxt-link
-      :to="article.slug"
+  <nuxt-link :to="`/articles/${article.slug}`">
+    <h3
       class="text-lg text-black font-bold no-underline hover:underline transition duration-150"
-      >{{ article.title }}</nuxt-link
     >
+      {{ article.title }}
+    </h3>
 
-    <p class="text-grey-darkest text-base leading-normal mt-1">
-      {{ article.description }}
-    </p>
+    <div
+      class="text-grey-darkest text-base leading-normal mt-1 line-clamp-1"
+      v-html="removeHtmlTags(article.short)"
+    />
 
     <div class="text-grey-darkest text-base leading-normal mt-2">
       <nuxt-link
         class="text-grey-darker hover:text-black text-sm no-underline hover:underline transition duration-150"
-        to="to"
+        :to="`/articles/${article.slug}`"
       >
         {{ buttonTitle }} →
       </nuxt-link>
     </div>
-  </article>
+  </nuxt-link>
 </template>
 
 <script>
+import { removeHtmlTags } from '~/utilities'
+
 export default {
   props: {
     article: {
@@ -40,6 +43,9 @@ export default {
       type: String,
       default: 'Read this article',
     },
+  },
+  methods: {
+    removeHtmlTags,
   },
 }
 </script>

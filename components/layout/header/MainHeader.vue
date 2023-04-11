@@ -19,7 +19,7 @@
         </div>
       </div>
     </header>
-    <div class="lg:pl-32 mt-12 max-w-2xl">
+    <div class="lg:pl-32 mt-8 max-w-2xl">
       <slot></slot>
     </div>
   </div>
