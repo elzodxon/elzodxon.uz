@@ -8,7 +8,7 @@
 
     <div
       class="text-grey-darkest text-base leading-normal mt-1 line-clamp-1"
-      v-html="removeHtmlTags(article.short)"
+      v-html="article.short"
     />
 
     <div class="text-grey-darkest text-base leading-normal mt-2">
@@ -23,8 +23,6 @@
 </template>
 
 <script>
-import { removeHtmlTags } from '~/utilities'
-
 export default {
   props: {
     article: {
@@ -43,9 +41,6 @@ export default {
       type: String,
       default: 'Read this article',
     },
-  },
-  methods: {
-    removeHtmlTags,
   },
 }
 </script>

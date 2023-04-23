@@ -6,6 +6,7 @@ export default {
   },
   ssr: true,
   loading: true,
+  target: 'static',
   head: {
     title: 'Elzodxon Sharofaddinov ',
     htmlAttrs: {

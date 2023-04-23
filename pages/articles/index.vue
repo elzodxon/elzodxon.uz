@@ -18,7 +18,7 @@
           </div>
           <!-- Render actual title and description when loaded -->
           <div v-else>
-            <BaseCard :article="article" />
+            <BaseCard :article="article" @on-change="onGetData" />
           </div>
         </div>
         <div v-if="showLoadMoreButton" class="text-center">
