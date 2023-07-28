@@ -1,100 +1,135 @@
 <template>
-  <PageWrapper title="Articles">
-    <div>
-      <h4>
-        Over the years I’ve published a few dozen articles — some more
-        noteworthy than others.
-      </h4>
-
-      <div class="space-y-10 mt-8">
-        <div v-for="article in loading ? 12 : articles" :key="article.id">
-          <!-- Display shimmer effect for title and description while loading -->
-          <div v-if="loading" class="animate-pulse">
-            <div
-              v-for="(item, index) in 20"
-              :key="index"
-              class="bg-gray-300 h-4 w-full mb-2"
-            ></div>
-          </div>
-          <!-- Render actual title and description when loaded -->
-          <div v-else>
-            <BaseCard :article="article" @on-change="onGetData" />
-          </div>
-        </div>
-        <div v-if="showLoadMoreButton" class="text-center">
-          <button
-            class="bg-blue-500 text-white px-4 py-2 mt-4 rounded hover:bg-blue-600"
-            @click="fetchMoreArticles"
-          >
-            Load More
-          </button>
-        </div>
-      </div>
+  <div v-if="articles.length > 0">
+    <h1 class="articles-text text-[22px]">Articles</h1>
+    <h4 class="text-[18px] my-6 text-gray-800">
+      Over the years I've published a few dozen articles — some more noteworthy
+      than others.
+    </h4>
+    <span class="text-[19px] my-4 text-gray-800"
+      >Here are some of my personal favorites.</span
+    >
+    <div
+      v-for="(article, index) in paginatedArticles"
+      :key="index"
+      class="article-wrapper my-10"
+    >
+      <nuxt-link class="article-link" :to="`/articles/${article.slug}`">
+        <h2
+          class="article-title text-[21px] my-2 min-w-[600px]"
+          v-html="article.title"
+        ></h2>
+      </nuxt-link>
+      <p class="article-short" v-html="truncateText(article.short)"></p>
+      <nuxt-link :to="`/articles/${article.slug}`" class="read-article-link"
+        >Read this article →</nuxt-link
+      >
     </div>
-  </PageWrapper>
+  </div>
+  <div v-else>
+    <div v-for="index in 15" :key="index">
+      <SkeletonBox />
+    </div>
+  </div>
 </template>
+
 <script>
-import PageWrapper from '~/components/ui/PageWrapper'
-import BaseCard from '~/components/ui/cards/base-card/BaseCard'
-import { Config } from '~/config'
+import SkeletonBox from '~/components/loader/SkeletonBox.vue'
+
 export default {
-  components: { BaseCard, PageWrapper },
-  fetch() {
-    this.fetchArticles()
+  components: {
+    // _slug,
+    SkeletonBox,
   },
   data() {
     return {
       articles: [],
-      page: 1,
-      perPage: 10,
-      loading: true,
+      perPage: 3,
+      currentPage: 1,
+      loading: false,
     }
   },
+
   computed: {
-    showLoadMoreButton() {
-      return this.articles.length % this.perPage === 0
+    paginatedArticles() {
+      const startIndex = 0
+      const endIndex = this.currentPage * this.perPage
+      return this.articles.slice(startIndex, endIndex)
     },
+  },
+  watch: {
+    '$store.state.articles': {
+      immediate: true,
+      handler(newArticles) {
+        this.articles = newArticles
+      },
+    },
+  },
+  mounted() {
+    this.articles = this.$store.state.articles
+    this.$store.dispatch('fetchingArticles', { force: true })
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
-    fetchArticles() {
-      this.$axios
-        .get(`https://api.elzodxon.me/api/v1/article/`, {
-          params: {
-            page: this.page,
-            perPage: this.perPage,
-          },
-        })
-        .then((response) => {
-          this.articles = [...this.articles, ...response.data]
-          this.page++
-        })
-        .catch((error) => {
-          console.error('Error fetching articles:', error)
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.loading = false
-          }, 300)
-        })
+    loadMore() {
+      if (this.loading) return // Prevent multiple requests
+      this.loading = true
+      setTimeout(() => {
+        const startIndex = (this.currentPage - 1) * this.perPage
+        const endIndex = this.currentPage * this.perPage
+        const newArticles = this.$store.state.articles.slice(
+          startIndex,
+          endIndex
+        )
+        this.articles = [...this.articles, ...newArticles]
+        this.currentPage++
+        this.loading = false
+      }, 100)
     },
-    fetchMoreArticles() {
-      this.fetchArticles()
+
+    truncateText(text) {
+      const maxLength = 195
+      if (text.length <= maxLength) {
+        return text
+      } else {
+        return text.substring(0, maxLength) + '...'
+      }
     },
-  },
-  head() {
-    return {
-      title: `Articles - ${Config.name} `,
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content:
-            '  Over the years I’ve published a few dozen articles — some more\n' +
-            '        noteworthy than others.',
-        },
-      ],
-    }
+    handleScroll() {
+      const scrollPosition = window.innerHeight + window.pageYOffset
+      const pageHeight = document.documentElement.scrollHeight
+
+      if (scrollPosition >= pageHeight && !this.loading) {
+        this.loadMore()
+      }
+    },
   },
 }
 </script>
+
+<style>
+.articles-text {
+  font-weight: 1000;
+}
+
+.article-title {
+  font-weight: 600 !important;
+}
+.article-title:hover {
+  text-decoration: underline;
+}
+.article-short {
+  font-size: 16px;
+  line-height: 30px;
+  color: rgb(115, 112, 112);
+}
+
+.read-article-link {
+  color: gray;
+  font-size: 14px;
+}
+
+.read-article-link:hover {
+  color: black;
+  text-decoration: underline;
+}
+</style>

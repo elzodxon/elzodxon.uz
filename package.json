@@ -16,6 +16,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "bootstrap-icons": "^1.10.5",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.28.1"
@@ -41,5 +42,10 @@
     "stylelint-config-prettier": "^7.0.0",
     "stylelint-config-standard": "^18.3.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
-  }
+  },
+  "description": "## Nuxt.js, Tailwind CSS, SASS with STRICT ESLINT and Prettier",
+  "main": ".eslintrc.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

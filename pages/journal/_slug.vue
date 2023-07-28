@@ -1,7 +1,7 @@
-<template>
+<!-- eslint-disable -->
+ <template>
   <div>
     <div v-if="loading" class="animate-pulse">
-      <!-- Display shimmer effect for title and description while loading -->
       <div
         v-for="(item, index) in 20"
         :key="index"
@@ -11,38 +11,38 @@
     <div v-else>
       <!-- Render actual title, description, and image when loaded -->
       <h1 class="text-2xl font-semibold mb-4 text-gray-800 mt-6">
-        {{ article.title }}
+        {{ journal.title }}
       </h1>
 
-      <div class="text-gray-600" v-html="article.content" />
+      <div class="text-gray-600" v-html="journal.content" />
     </div>
   </div>
 </template>
-
+<!-- eslint-disable -->
 <script>
 export default {
   data() {
     return {
-      article: null,
+      journal: null,
       loading: true,
     }
   },
   created() {
     const slug = this.$route.params.slug // Get slug from route parameter
-    this.fetchArticle(slug)
+    this.fetchJournal(slug)
   },
   methods: {
-    fetchArticle(slug) {
+    fetchJournal(slug) {
       this.loading = true
       this.$axios
-        .get(`https://api.elzodxon.uz/api/v1/article/${slug}`) // Fetch article by slug
+        .get(`https://api.elzodxon.uz/api/v1/journal/${slug}`) // Fetch journal by slug
         .then((response) => {
           console.log(response.data)
-          this.article = response.data
+          this.journal = response.data
           this.loading = false
         })
         .catch((error) => {
-          console.error('Error fetching article:', error)
+          console.error('Error fetching journal:', error)
           this.loading = false
         })
     },
