@@ -132,20 +132,5 @@ export default {
       }
     },
   },
-  head() {
-    return {
-      title: 'Podcasts',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'This page is responsible to get podcasts from vuex store and show them.',
-        },
-        { name: 'keywords', content: 'podcast, store, axios, loading' },
-      ],
-    }
-  },
 }
 </script>

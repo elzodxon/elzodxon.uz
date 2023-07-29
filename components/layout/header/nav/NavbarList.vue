@@ -68,30 +68,11 @@ export default {
       tabTitle: 'NavbarList',
     }
   },
-  watch: {
-    tabTitle(newTitle) {
-      document.title = newTitle
-    },
-  },
+
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown
     },
-  },
-  head() {
-    return {
-      title: this.tabTitle || 'NavbarList',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'That includes and navigates a links for changing pages. It received links from Navbar.vue',
-        },
-        { name: 'keywords', content: 'navbar, navigation, links, pages' },
-      ],
-    }
   },
 }
 </script>

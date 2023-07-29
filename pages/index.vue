@@ -9,6 +9,9 @@
           <nuxt-link to="/courses" class="underline font-semibold"
             >courses</nuxt-link
           >,
+          <nuxt-link to="/journal" class="underline font-semibold"
+            >journals</nuxt-link
+          >,
           <!--          <nuxt-link to="/podcasts" class="underline font-semibold"-->
           <!--            >podcats</nuxt-link-->
           <!--          >,-->
@@ -44,19 +47,6 @@ export default {
   components: { PageWrapper },
   data() {
     return { Config }
-  },
-  head() {
-    return {
-      title: Config.name,
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content: Config.description,
-        },
-      ],
-    }
   },
 }
 </script>

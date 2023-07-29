@@ -15,7 +15,6 @@
           >
             {{ Config.name }}
           </nuxt-link>
-          <NavbarList :menus="Config.menus" />
         </div>
       </div>
     </header>
@@ -26,11 +25,10 @@
 </template>
 <script>
 import Avatar from '~/components/ui/avatar/Avatar'
-import NavbarList from '~/components/layout/header/nav/NavbarList'
 import { Config } from '~/config'
 
 export default {
-  components: { NavbarList, Avatar },
+  components: { Avatar },
   data() {
     return {
       Config,
