@@ -83,6 +83,7 @@ export default {
 
   buildModules: [
     // https://go.nuxtjs.dev/eslint
+    '@nuxtjs/yandex-metrika',
     [
       '@nuxtjs/google-analytics',
       {
@@ -99,6 +100,14 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/tailwindcss',
   ],
+
+  yandexMetrika: {
+    id: '67800249',
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
