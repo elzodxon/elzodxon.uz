@@ -23,7 +23,7 @@
     <span class="text-[18px] my-6 text-gray-600"
       >Here are some of my personal favorites.</span
     >
-    <div v-for="project in paginatedProjects" :key="project.id" class="my-10">
+    <div v-for="project in projects" :key="project.id" class="my-10">
       <a class="project-visit" :href="project.project_link"
         ><h2 class="project-title text-[19px] my-4" v-html="project.title"></h2
       ></a>
@@ -57,16 +57,6 @@ export default {
       currentPage: 1,
     }
   },
-  computed: {
-    paginatedProjects() {
-      const startIndex = (this.currentPage - 1) * this.perPage
-      const endIndex = startIndex + this.perPage
-      return this.projects.slice(startIndex, endIndex)
-    },
-    isLoadMoreDisabled() {
-      return this.paginatedProjects.length < 3
-    },
-  },
   watch: {
     '$store.state.projects': {
       immediate: true,
@@ -80,9 +70,6 @@ export default {
     this.$store.dispatch('fetchingProjects', { force: true })
   },
   methods: {
-    loadMore() {
-      this.currentPage++
-    },
     truncateText(text) {
       const maxLength = 170
       if (text.length <= maxLength) {
