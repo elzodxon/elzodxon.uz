@@ -73,7 +73,7 @@ export default {
     fetchPodcast(slug) {
       this.loading = true
       this.$axios
-        .get(`https://api.elzodxon.uz/api/v1/podcast/${slug}`) // Fetch podcast by slug
+        .get(`podcast/${slug}`) // Fetch podcast by slug
         .then((response) => {
           this.podcast = response.data
           this.loading = false

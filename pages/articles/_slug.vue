@@ -35,7 +35,7 @@ export default {
     fetchArticle(slug) {
       this.loading = true
       this.$axios
-        .get(`https://api.elzodxon.uz/api/v1/article/${slug}`) // Fetch article by slug
+        .get(`article/${slug}`) // Fetch article by slug
         .then((response) => {
           this.article = response.data
           this.loading = false
