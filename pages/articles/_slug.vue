@@ -37,7 +37,6 @@ export default {
       this.$axios
         .get(`https://api.elzodxon.uz/api/v1/article/${slug}`) // Fetch article by slug
         .then((response) => {
-          console.log(response.data)
           this.article = response.data
           this.loading = false
         })

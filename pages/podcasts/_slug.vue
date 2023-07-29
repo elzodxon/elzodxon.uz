@@ -75,7 +75,6 @@ export default {
       this.$axios
         .get(`https://api.elzodxon.uz/api/v1/podcast/${slug}`) // Fetch podcast by slug
         .then((response) => {
-          console.log(response.data)
           this.podcast = response.data
           this.loading = false
         })

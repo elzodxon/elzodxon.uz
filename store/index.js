@@ -3,7 +3,6 @@ export const actions = {
     this.$axios
       .$get('article/')
       .then((res) => {
-        console.log('res', res)
         commit('UPDATE_ARTICLES', res)
       })
       .catch((err) => {
@@ -25,7 +24,6 @@ export const actions = {
       .$get('project/')
       .then((res) => {
         commit('UPDATE_PROJECTS', res.data)
-        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -35,7 +33,6 @@ export const actions = {
     this.$axios
       .$get('journal/')
       .then((res) => {
-        console.log('res', res)
         commit('UPDATE_JOURNALS', res)
       })
       .catch((err) => {
