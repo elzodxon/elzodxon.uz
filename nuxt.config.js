@@ -1,8 +1,13 @@
+import axios from 'axios'
+require('dotenv').config()
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   server: {
     port: 3002, // default: 3005
     host: '0.0.0.0', // default: localhost
+  },
+  env: {
+    VUE_APP_API_URL: process.env.VUE_APP_API_URL,
   },
   ssr: true,
   loading: true,
@@ -81,8 +86,13 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: process.env.BASE_URL || 'https://jsonplaceholder.typicode.com/',
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: process.env.VUE_APP_API_URL || 'https://api.elzodxon.uz/api/v1/',
+    },
+  },
+  globals: {
+    axios,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

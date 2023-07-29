@@ -18,10 +18,12 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "bootstrap-icons": "^1.10.5",
     "core-js": "^3.15.1",
+    "dotenv": "^16.3.1",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.28.1"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/style-resources": "^1.0.0",

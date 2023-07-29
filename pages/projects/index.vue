@@ -41,56 +41,74 @@
 </template>
 
 <script>
-/* eslint-disable */
-import SkeletonBox from '~/components/loader/SkeletonBox.vue';
+import SkeletonBox from '~/components/loader/SkeletonBox.vue'
 export default {
+  components: {
+    SkeletonBox,
+  },
+  beforeRouteLeave(to, from, next) {
+    document.title = 'Come back we miss you!'
+    next()
+  },
   data() {
     return {
       projects: [],
       perPage: 3,
-      currentPage: 1
+      currentPage: 1,
     }
-  },
-  components:{
-    SkeletonBox
-  },
-  methods: {
-    loadMore() {
-      this.currentPage++;
-    },
-    truncateText(text) {
-      const maxLength = 170;
-      if (text.length <= maxLength) {
-        return text;
-      } else {
-        return text.substring(0, maxLength) + '...';
-      }
-    }
-  },
-  mounted() {
-    this.projects = this.$store.state.projects
-    this.$store.dispatch('fetchingProjects', { force: true });
   },
   computed: {
     paginatedProjects() {
-      const startIndex = (this.currentPage - 1) * this.perPage;
-      const endIndex = startIndex + this.perPage;
-      return this.projects.slice(startIndex, endIndex);
+      const startIndex = (this.currentPage - 1) * this.perPage
+      const endIndex = startIndex + this.perPage
+      return this.projects.slice(startIndex, endIndex)
     },
     isLoadMoreDisabled() {
-      return this.paginatedProjects.length < 3;
-    }
+      return this.paginatedProjects.length < 3
+    },
   },
   watch: {
     '$store.state.projects': {
       immediate: true,
       handler(newProjects) {
-        this.projects = newProjects;
+        this.projects = newProjects
+      },
+    },
+  },
+  mounted() {
+    this.projects = this.$store.state.projects
+    this.$store.dispatch('fetchingProjects', { force: true })
+  },
+  methods: {
+    loadMore() {
+      this.currentPage++
+    },
+    truncateText(text) {
+      const maxLength = 170
+      if (text.length <= maxLength) {
+        return text
+      } else {
+        return text.substring(0, maxLength) + '...'
       }
+    },
+  },
+  head() {
+    return {
+      title: 'Projects',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'description',
+          content:
+            'This page is responsible to get projects from vuex store and show them.',
+        },
+        { name: 'keywords', content: 'projects, store, axios, loading' },
+      ],
     }
-  }
-};
-</script> 
+  },
+}
+</script>
 <style>
 .projects-text {
   font-weight: 1000;
@@ -110,7 +128,7 @@ export default {
   color: gray;
   font-size: 14px;
 }
-.project-visit:hover{
+.project-visit:hover {
   text-decoration: underline;
 }
 
