@@ -83,7 +83,7 @@ export default {
         this.articles = [...this.articles, ...newArticles]
         this.currentPage++
         this.loading = false
-      }, 100)
+      }, 400)
     },
 
     truncateText(text) {
@@ -102,6 +102,21 @@ export default {
         this.loadMore()
       }
     },
+  },
+  head() {
+    return {
+      title: 'Articles',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'description',
+          content:
+            'This page is responsible to get articles from vuex store and show them.',
+        },
+        { name: 'keywords', content: 'article, store, axios, loading' },
+      ],
+    }
   },
 }
 </script>

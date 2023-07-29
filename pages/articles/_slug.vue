@@ -46,6 +46,21 @@ export default {
           this.loading = false
         })
     },
+    head() {
+      return {
+        title: 'Article-Single',
+        meta: [
+          { charset: 'utf-8' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+          {
+            name: 'description',
+            content:
+              'This page is reponsible to show a article datas with fetching axios',
+          },
+          { name: 'keywords', content: 'article, store, loading, axios' },
+        ],
+      }
+    },
   },
 }
 </script>
