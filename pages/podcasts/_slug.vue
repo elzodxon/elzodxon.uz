@@ -2,7 +2,6 @@
 <template>
   <div>
     <div v-if="loading" class="animate-pulse">
-      Display shimmer effect for title and description while loading
       <div v-for="(item, index) in 20" :key="index" class="bg-gray-300 h-4 w-full mb-2"></div>
     </div>
     <div v-else class="podcast-single-content mt-8">
@@ -87,21 +86,6 @@ export default {
     },
     playPodcast() {
       this.isPlaying = !this.isPlaying;
-    }
-  },
-  head() {
-    return {
-      title: 'Podacast-Single',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'This page is responsible to get podcasts from vuex store and show them.',
-        },
-        { name: 'keywords', content: 'podcast, store, axios, loading' },
-      ],
     }
   },
 }

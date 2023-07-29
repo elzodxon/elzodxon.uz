@@ -79,21 +79,6 @@ export default {
       }
     },
   },
-  head() {
-    return {
-      title: 'Projects',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'This page is responsible to get projects from vuex store and show them.',
-        },
-        { name: 'keywords', content: 'projects, store, axios, loading' },
-      ],
-    }
-  },
 }
 </script>
 <style>

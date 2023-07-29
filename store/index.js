@@ -1,19 +1,18 @@
-/* eslint-disable */
-import axios from 'axios'
-
 export const actions = {
   fetchingArticles({ commit }) {
-    axios.get(this.$config.axios.baseURL + 'article/')
+    this.$axios
+      .$get('article/')
       .then((res) => {
-        commit('UPDATE_ARTICLES', res.data)
-        console.log(res.data)
+        console.log('res', res)
+        commit('UPDATE_ARTICLES', res)
       })
       .catch((err) => {
         console.log(err)
       })
-  },  
+  },
   fetchingPodcasts({ commit }) {
-    axios.get(this.$config.axios.baseURL + 'podcast/')
+    this.$axios
+      .$get('podcast/')
       .then((res) => {
         commit('UPDATE_PODCASTS', res.data)
       })
@@ -22,7 +21,8 @@ export const actions = {
       })
   },
   fetchingProjects({ commit }) {
-    axios.get(this.$config.axios.baseURL + 'project/')
+    this.$axios
+      .$get('project/')
       .then((res) => {
         commit('UPDATE_PROJECTS', res.data)
         console.log(res.data)
@@ -32,10 +32,11 @@ export const actions = {
       })
   },
   fetchingJournals({ commit }) {
-    axios.get(this.$config.axios.baseURL + 'journal/')
+    this.$axios
+      .$get('journal/')
       .then((res) => {
-        commit('UPDATE_JOURNALS', res.data)
-        console.log(res.data)
+        console.log('res', res)
+        commit('UPDATE_JOURNALS', res)
       })
       .catch((err) => {
         console.log(err)
@@ -63,15 +64,4 @@ export const state = {
   journals: [],
   podcasts: [],
   projects: [],
-}
-
-export const getters = {
-  gettingList(state) {
-    return () => {
-      state.articles,
-      state.podcasts,
-      state.projects,
-      state.journals
-    }
-  },
 }

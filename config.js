@@ -7,16 +7,16 @@ export const Config = {
       link: '/articles',
       name: 'Articles',
     },
-    {
-      id: 2,
-      link: '/podcasts',
-      name: 'Podcasts',
-    },
-    {
-      id: 3,
-      link: '/projects',
-      name: 'Projects',
-    },
+    // {
+    //   id: 2,
+    //   link: '/podcasts',
+    //   name: 'Podcasts',
+    // },
+    // {
+    //   id: 3,
+    //   link: '/projects',
+    //   name: 'Projects',
+    // },
     {
       id: 4,
       link: '/journal',

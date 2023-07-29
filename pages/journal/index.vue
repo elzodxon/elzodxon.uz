@@ -1,89 +1,58 @@
 <template>
-  <PageWrapper title="Life journal">
-    <div v-if="journals.length > 0">
-      <h4>
-        Something new I'm starting for 2019 — every week or two I write about
-        what I've been working on, problems I've solved, and things I'm still
-        trying to figure out.
-      </h4>
+  <div v-if="journals.length">
+    <h2 class="text-[18px] my-2 text-gray-800">
+      Something new I'm starting for 2019 — every week or two I write about what
+      I've been working on, problems I've solved, and things I'm still trying to
+      figure out.
+    </h2>
 
-      <br />
-      <p>
-        If you're interested in following along, subscribe to
-        <a class="font-semibold underline" :href="Config.telegram_channel"
-          >my telegram channel</a
-        >
-      </p>
+    <p class="text-[19px] my-4 text-gray-800">
+      If you're interested in following along, subscribe to
+      <a class="font-semibold underline" :href="Config.telegram_channel"
+        >my telegram channel</a
+      >
+    </p>
 
-      <div v-for="journal in journals" :key="journal.id" class="my-10">
-        <h3 class="text-[13px] text-gray-500">DECEMBER 23, 2023</h3>
-        <nuxt-link :to="`/journal/${journal.slug}`" class="read-journal-link">
-          <h2
-            class="journal-title text-[19px] my-2 font-bold"
-            v-html="journal.title"
-          ></h2>
-        </nuxt-link>
-        <p class="journal-short" v-html="journal.content"></p>
-      </div>
+    <hr class="my-3" />
+    <div v-for="journal in journals" :key="journal.id" class="my-2">
+      <!--      <h3 class="text-[13px] text-gray-500">DECEMBER 23, 2023</h3>-->
+      <nuxt-link :to="`/journal/${journal.slug}`" class="read-journal-link">
+        <h2
+          class="journal-title text-[19px] my-2 font-bold"
+          v-html="journal.title"
+        ></h2>
+      </nuxt-link>
+      <p class="journal-short" v-html="journal.content"></p>
+      <nuxt-link :to="`/journal/${journal.slug}`" class="read-article-link"
+        >Read this article →</nuxt-link
+      >
     </div>
-    <div v-else>
-      <div v-for="index in 15" :key="index">
-        <SkeletonBox />
-      </div>
+  </div>
+  <div v-else>
+    <div v-for="index in 20" :key="index">
+      <SkeletonBox />
     </div>
-  </PageWrapper>
+  </div>
 </template>
 <script>
-import PageWrapper from '~/components/ui/PageWrapper'
 import { Config } from '~/config'
 import SkeletonBox from '~/components/loader/SkeletonBox.vue'
 export default {
   components: {
-    PageWrapper,
     SkeletonBox,
   },
   data() {
     return {
       Config,
-      journals: [],
     }
   },
-  watch: {
-    '$store.state.journals': {
-      immediate: true,
-      handler(newJournals) {
-        this.journals = newJournals
-      },
+  computed: {
+    journals() {
+      return this.$store.state.journals
     },
   },
-  mounted() {
-    this.journals = this.$store.state.journals
-    this.$store.dispatch('fetchingJournals', { force: true })
-  },
-  methods: {
-    truncateText(text) {
-      const maxLength = 170
-      if (text.length <= maxLength) {
-        return text
-      } else {
-        return text.substring(0, maxLength) + '...'
-      }
-    },
-  },
-  head() {
-    return {
-      title: 'Journals',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'This page is responsible to get journals from vuex store and show them.',
-        },
-        { name: 'keywords', content: 'journal, store, axios, loading' },
-      ],
-    }
+  async mounted() {
+    await this.$store.dispatch('fetchingJournals', { force: true })
   },
 }
 </script>

@@ -9,9 +9,9 @@
           <nuxt-link to="/courses" class="underline font-semibold"
             >courses</nuxt-link
           >,
-          <nuxt-link to="/podcasts" class="underline font-semibold"
-            >podcats</nuxt-link
-          >,
+          <!--          <nuxt-link to="/podcasts" class="underline font-semibold"-->
+          <!--            >podcats</nuxt-link-->
+          <!--          >,-->
           <nuxt-link class="underline font-semibold" to="/youtube-videos"
             >Youtube videos</nuxt-link
           >.
@@ -19,7 +19,10 @@
 
         <p>
           Right now, I work at
-          <a href="https://uic.group" class="font-semibold underline"
+          <a
+            target="_blank"
+            href="https://uic.group"
+            class="font-semibold underline"
             >UIC Group</a
           >
           as a Frontend developer

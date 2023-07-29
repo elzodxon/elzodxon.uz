@@ -1,5 +1,4 @@
-<!-- eslint-disable -->
- <template>
+<template>
   <div>
     <div v-if="loading" class="animate-pulse">
       <div
@@ -10,7 +9,7 @@
     </div>
     <div v-else>
       <!-- Render actual title, description, and image when loaded -->
-      <h1 class="text-2xl font-semibold mb-4 text-gray-800 mt-6">
+      <h1 class="text-2xl font-semibold text-gray-800 my-2">
         {{ journal.title }}
       </h1>
 
@@ -33,34 +32,17 @@ export default {
   },
   methods: {
     fetchJournal(slug) {
-      this.loading = true
       this.$axios
-        .get(`https://api.elzodxon.uz/api/v1/journal/${slug}`) // Fetch journal by slug
+        .get(`journal/${slug}`) // Fetch journal by slug
         .then((response) => {
-          console.log(response.data)
           this.journal = response.data
-          this.loading = false
         })
         .catch((error) => {
           console.error('Error fetching journal:', error)
+        }).finally(()=> {
           this.loading = false
-        })
+      })
     },
-  },
-  head() {
-    return {
-      title: 'Journals-Single',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'This page is responsible to get journals from vuex store and show them.',
-        },
-        { name: 'keywords', content: 'journal, store, axios, loading' },
-      ],
-    }
   },
 }
 </script>

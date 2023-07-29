@@ -10,7 +10,7 @@
     </div>
     <div v-else>
       <!-- Render actual title, description, and image when loaded -->
-      <h1 class="text-2xl font-semibold mb-4 text-gray-800 mt-6">
+      <h1 class="text-2xl font-semibold text-gray-800 my-2">
         {{ article.title }}
       </h1>
 

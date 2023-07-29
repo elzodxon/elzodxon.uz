@@ -13,15 +13,53 @@ export default {
   loading: true,
   target: 'static',
   head: {
-    title: 'Elzodxon Sharofaddinov ',
+    title:
+      'Elzodxon Sharofaddinov - Frontend Developer | Blogging about Web Development and More',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Welcome to the blog of Elzodxon Sharofaddinov, a passionate Frontend Developer. Join me as I share insights, tutorials, and thoughts on web development, programming, and technology.',
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'Frontend developer, web development, programming, technology, blog, Elzodxon Sharofaddinov, articles, tutorials',
+      },
+      // Twitter Card
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@elzodxon_me',
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content:
+          'Elzodxon Sharofaddinov - Frontend Developer | Blogging about Web Development and More',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content:
+          'Join me on my blog as I share insights, tutorials, and thoughts on #FrontendDevelopment, #WebDevelopment, #Programming, and more. Follow for the latest updates!',
+      },
+      // Replace [Link to an image representing you or your blog] with your image URL
+      // {
+      //   hid: 'twitter:image',
+      //   name: 'twitter:image',
+      //   content: '[Link to an image representing you or your blog]',
+      // },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -43,6 +81,12 @@ export default {
 
   buildModules: [
     // https://go.nuxtjs.dev/eslint
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'G-6QFZNG6522',
+      },
+    ],
     [
       '@nuxtjs/eslint-module',
       {
