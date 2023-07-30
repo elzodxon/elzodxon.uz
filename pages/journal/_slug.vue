@@ -13,7 +13,7 @@
         {{ journal.title }}
       </h1>
 
-      <div class="text-gray-600 line-clamp-2" v-html="journal.content" />
+      <div class="text-gray-600" v-html="journal.content" />
     </div>
   </div>
 </template>
