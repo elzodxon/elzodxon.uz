@@ -20,7 +20,7 @@
           v-html="article.title"
         ></h2>
       </nuxt-link>
-      <p class="article-short" v-html="article.short"></p>
+      <p class="article-short line-clamp-2" v-html="article.short"></p>
       <nuxt-link :to="`/articles/${article.slug}`" class="read-article-link"
         >Read this article →</nuxt-link
       >
